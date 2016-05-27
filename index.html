@@ -1,0 +1,188 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="tephone=no,email=no,date=no,address=no">
+		<style type="text/css">
+			html{ background-color: white; }
+			header{ border-bottom: 1px solid #ccc; padding: 25px 0; }
+			span {
+                padding: 10px 15px;
+				margin: 10px;
+				display: inline-block;
+				background-color: #e8e8e8;
+			}
+            .hover{ opacity: .4; }
+		</style>
+	</head>
+	<body>
+		<div class="main">
+			<header>
+				<h1>listContact</h1>
+				<mark>
+					使用前请详细阅读 文档 使用规则
+				</mark>
+			</header>
+			<span tapmode="hover" onclick="fnOpen()">open()</span>
+			<span tapmode="hover" onclick="fnClose()">close()</span>
+			<span tapmode="hover" onclick="fnReloadData()">reloadData()</span>
+			<span tapmode="hover" onclick="fnHide()">hide()</span>
+			<span tapmode="hover" onclick="fnShow()">show()</span>
+			<span tapmode="hover" onclick="fnDeleteItem()">deleteItem()</span>
+			<span tapmode="hover" onclick="fnRefreshItem()">refreshItem()</span>
+			<span tapmode="hover" onclick="fnInsertItem()">insertItem()</span>
+			<span tapmode="hover" onclick="fnScrollToItem()">scrollToItem()</span>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var listContact;
+		apiready = function() {
+			listContact = api.require('listContact');
+		};
+
+		function fnOpen() {
+			listContact.open({
+				y: document.querySelector('.main').offsetHeight,
+			    h: api.winHeight - document.querySelector('.main').offsetHeight,
+			    rightBtn: [{
+			        color: '#8B0000',
+			        title: '备注'
+			    }],
+			    data: {
+			        common: [{
+			            placeholderImg: 'widget://image/placeholderImg.png',
+			            img: 'http://7xoo0e.com1.z0.glb.clouddn.com/apicloud/948bec8a4df2adb27581319d8a8c014e.png',
+			            title: '标题'
+			        }],
+			        A: [{
+			            placeholderImg: 'widget://image/placeholderImg.png',
+			            img: 'http://7xoo0e.com1.z0.glb.clouddn.com/apicloud/948bec8a4df2adb27581319d8a8c014e.png',
+			            title: '标题'
+			        }, {
+			            placeholderImg: 'widget://image/placeholderImg.png',
+			            title: '标题'
+			        }, {
+			            placeholderImg: 'widget://image/placeholderImg.png',
+			            title: '标题'
+			        }, {
+			            placeholderImg: 'widget://image/placeholderImg.png',
+			            title: '标题'
+			        }, {
+			            placeholderImg: 'widget://image/placeholderImg.png',
+			            title: '标题'
+			        }, {
+			            placeholderImg: 'widget://image/placeholderImg.png',
+			            title: '标题'
+			        }, {
+			            placeholderImg: 'widget://image/placeholderImg.png',
+			            title: '标题'
+			        }, {
+			            placeholderImg: 'widget://image/placeholderImg.png',
+			            title: '标题'
+			        }, {
+			            placeholderImg: 'widget://image/placeholderImg.png',
+			            title: '标题'
+			        }, {
+			            placeholderImg: 'widget://image/placeholderImg.png',
+			            title: '标题'
+			        }]
+			    }
+			}, function(ret, err) {
+			    if( ret ){
+			         alert( JSON.stringify( ret ) );
+			    }else{
+			         alert( JSON.stringify( err ) );
+			    }
+			});
+		};
+
+		function fnClose() {
+			listContact.close();
+		};
+		
+		function fnReloadData() {
+			listContact.reloadData({
+			    data: {
+			        common: [{
+			            placeholderImg: 'widget://image/placeholderImg.png',
+			            img: 'http://7xoo0e.com1.z0.glb.clouddn.com/apicloud/948bec8a4df2adb27581319d8a8c014e.png',
+			               title:'标题'
+			          }],
+			        A: [{
+			            placeholderImg: 'widget://image/placeholderImg.png',
+			            img: 'http://7xoo0e.com1.z0.glb.clouddn.com/apicloud/948bec8a4df2adb27581319d8a8c014e.png',
+			               title:'标题'
+			         },{
+			            placeholderImg: 'widget://image/placeholderImg.png',title:'标题'
+			         },{
+			            placeholderImg: 'widget://image/placeholderImg.png',title:'标题' 
+			         },{
+			            placeholderImg:'widget://image/placeholderImg.png',title:'标题'
+			         },{
+			            placeholderImg:'widget://image/placeholderImg.png',title:'标题'
+			         },{
+			            placeholderImg: 'widget://image/placeholderImg.png',title:'标题'
+			         },{
+			            placeholderImg: 'widget://image/placeholderImg.png',title:'标题' 
+			         },{
+			            placeholderImg: 'widget://image/placeholderImg.png',title:'标题'
+			         },{
+			            placeholderImg: 'widget://image/placeholderImg.png',title:'标题'
+			         },{
+			            placeholderImg:'widget://image/placeholderImg.png' ,title:'标题'
+			         }]}
+			},function(ret,err){
+			    if( ret ){
+			         alert( JSON.stringify( ret ) );
+			    }else{
+			         alert( JSON.stringify( err ) );
+			    }        
+			});
+		};
+
+		function fnHide() {
+			listContact.hide();
+		};
+
+		function fnShow() {
+			listContact.show();
+		};
+
+		function fnDeleteItem() {
+			 listContact.deleteItem({
+			    index: 2,
+			    key: A
+			});
+		};
+
+		function fnRefreshItem(){
+			listContact.refreshItem({
+			    index: 2,
+			    data: {
+			       title: '刷新指定下标的标题', 
+			       subTitle: '刷新指定下标的子标题'
+			    }
+			});
+		}
+
+		function fnInsertItem(){
+			listContact.insertItem({
+			    index:2,
+			    data:{
+			        img: 'widget://image/placeholderImg.png',
+			        title: '12:00',
+			        subTitle: 'APICloud粉丝互动会',
+			        remark: '完成'
+			    }
+			});
+		}
+
+		function fnScrollToItem(){
+			listContact.scrollToItem({
+			    index: 2,    
+			    key: 'B'
+			});
+		}
+	</script>
+</html>
